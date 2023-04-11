@@ -9,6 +9,8 @@
 // If it is a pair programming lab please specify partner below.
 // Partner: @peteranteater
 
+#include "phone.h"
+
 // ========================= YOUR CODE HERE =========================
 // This implementation file (phone.cc) is where you should implement
 // the member functions declared in the header (phone.h), only
@@ -20,3 +22,4 @@
 //     }
 // to tell the compiler that each function belongs to the Phone class.
 // ===================================================================
+

@@ -25,4 +25,14 @@ class Network {
   // If you were the "driver" for the Phone class, then switch roles
   // with your lab partner and act as the "navigator" for this class.
   // ===============================================================
+private: 
+std::map<std::string, std::shared_ptr<Phone>> phonebook_;
+
+public:
+
+void AddPhone(std::shared_ptr<Phone> add){
+  phonebook_.insert({add->GetOwner(), add});
+}
+
+
 };
