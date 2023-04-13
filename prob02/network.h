@@ -34,5 +34,8 @@ void AddPhone(std::shared_ptr<Phone> add){
   phonebook_.insert({add->GetOwner(), add});
 }
 
+void SendMessage(std::shared_ptr<Message> send, const std::string &person);
+
+void SendMessage(std::shared_ptr<Message> send, const std::vector<std::string> vector);
 
 };

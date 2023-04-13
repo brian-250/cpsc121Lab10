@@ -24,14 +24,27 @@ int main() {
   //    `phone3`: a pointer to a Phone owned by JC
   // ======================================================
 
+  Phone Anna("Anna");
+  Phone Raf("Raf");
+  Phone JC("JC");
+
+  std::shared_ptr<Phone> phone1 = std::make_shared<Phone>(Anna);
+  std::shared_ptr<Phone> phone2 = std::make_shared<Phone>(Raf);
+  std::shared_ptr<Phone> phone3 = std::make_shared<Phone>(JC);
+
   // =================== YOUR CODE HERE ===================
   // 2. Add each phone to the Network, `csuf_network`.
   // ======================================================
+  csuf_network.AddPhone(phone1);
+  csuf_network.AddPhone(phone2);
+  csuf_network.AddPhone(phone3);
 
   // =================== YOUR CODE HERE ===================
   // 3. Send the message "Sup" to Raf over the network,
   //    authored on Anna's phone.
   // ======================================================
+  csuf_network.Network::SendMessage("Sup", phone1);
+
 
   // =================== YOUR CODE HERE ===================
   // 4. Send the message "Lol" to Anna over the network,
