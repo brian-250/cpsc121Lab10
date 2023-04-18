@@ -1,50 +1,46 @@
-// Please fill in below.
-// <Your name>
-// <Your section number> (e.g. CPSC 121L-01)
-// <Date>
-// <Your csu.fullerton.edu email>
-// <Your GitHub username>
+// Brian Milian
+// CPSC 121L-01
+// 2023-04-04
+// brianmilian@csu.fullerton.edu
+// @brian-250
 //
 // Lab 10-2
-// If it is a pair programming lab please specify partner below.
-// Partner: @peteranteater
+// Pair Programming Lab
+// Partner: @abledaniel
+//
+// This program creates a network class that connects smart pointer phone
+// objects together to allow for communication within the owners of the phones
+//
+
+#include "network.h"
+
 #include <iostream>
-#include <memory>
 #include <map>
+#include <memory>
+#include <string>
 #include <vector>
 
 #include "message.h"
 #include "phone.h"
-#include "network.h"
-// ========================= YOUR CODE HERE =========================
-// This implementation file (network.cc) is where you should implement
-// the member functions declared in the header (network.h), only
-// if you didn't implement them inline within network.h.
-//
-// Remember to specify the name of the class with :: in this format:
-//     <return type> MyClassName::MyFunction() {
-//        ...
-//     }
-// to tell the compiler that each function belongs to the Network class.
-// ===================================================================
 
-void Network::SendMessage(std::shared_ptr<Message> send, const std::string &person){
-  if(phonebook_.count(person) == 0){
-  }
-  else {
-    Phone net(person);
-    net.AcceptMessage(send);
+void Network::AddPhone(std::shared_ptr<Phone> phone) {
+  phonebook_.insert({phone->GetOwner(), phone});
+}
+void Network::SendMessage(std::shared_ptr<Message> message,
+                          const std::string& recipient) {
+  for (auto const& index : phonebook_) {
+    if (index.first == recipient) {
+      index.second->AcceptMessage(message);
+    }
   }
 }
-
-void Network::SendMessage(std::shared_ptr<Message> send, const std::vector<std::string> vector){
-    for(int i = 0; i < vector.size(); i++){
-        if(phonebook_.count(vector.at(i)) == 0){
-
+void Network::SendMessage(std::shared_ptr<Message> message,
+                          const std::vector<std::string>& recipients) {
+  for (auto const& index : phonebook_) {
+    for (auto const& person : recipients) {
+      if (index.first == person) {
+        index.second->AcceptMessage(message);
+      }
     }
-    else {
-    Phone net(vector.at(i));
-    net.AcceptMessage(send);
-    }
-    }
+  }
 }
