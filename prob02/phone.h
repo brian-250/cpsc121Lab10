@@ -1,53 +1,34 @@
-// Please fill in below.
-// <Your name>
-// <Your section number> (e.g. CPSC 121L-01)
-// <Date>
-// <Your csu.fullerton.edu email>
-// <Your GitHub username>
+// Brian Milian
+// CPSC 121L-01
+// 2023-04-04
+// brianmilian@csu.fullerton.edu
+// @brian-250
 //
 // Lab 10-2
-// If it is a pair programming lab please specify partner below.
-// Partner: @peteranteater
+// Pair Programming Lab
+// Partner: @abledaniel
+//
+// This program creates a network class that connects smart pointer phone
+// objects together to allow for communication within the owners of the phones
+//
 
 #pragma once
 
-#include <iostream>
 #include <memory>
+#include <string>
 #include <vector>
 
 #include "message.h"
 
 class Phone {
-  // ======================= YOUR CODE HERE =======================
-  // Write the Phone class here. Refer to the README for the member
-  // variables, constructors, and member functions needed.
-  //
-  // Select one among you and your lab partner to be the "driver"
-  // and the other to be the "navigator". The driver should write
-  // the code, while the navigator reviews the code. Both of you
-  // should communicate and share thoughts as you go along.
-  // ===============================================================
-private:
-std::string owner_;
-std::vector<std::shared_ptr<Message>> messages_; 
+ public:
+  Phone(const std::string& owner);
+  std::string GetOwner() const;
+  std::shared_ptr<Message> AuthorMessage(const std::string& message);
+  void AcceptMessage(std::shared_ptr<Message> message);
+  void PrintMessages();  // Should we make this function const?
 
-public:
-
-Phone(std::string owner){
-  owner_ = owner;
-}
-
-  std::string GetOwner()const { return owner_;}
-
-  std::shared_ptr<Message> AuthorMessage(const std::string &mess){
-    std::shared_ptr<Message> message1 = std::make_shared<Message>(mess, owner_);
-    return message1; 
-  }
-
-  void AcceptMessage(std::shared_ptr<Message> accept){ messages_.push_back(accept);}
-
-  void PrintMessage(){
-    std::cout << "sender: ";
-  };
-
+ private:
+  std::string owner_;
+  std::vector<std::shared_ptr<Message>> messages_;
 };
