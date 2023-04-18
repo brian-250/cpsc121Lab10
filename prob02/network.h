@@ -1,41 +1,35 @@
-// Please fill in below.
-// <Your name>
-// <Your section number> (e.g. CPSC 121L-01)
-// <Date>
-// <Your csu.fullerton.edu email>
-// <Your GitHub username>
+// Brian Milian
+// CPSC 121L-01
+// 2023-04-04
+// brianmilian@csu.fullerton.edu
+// @brian-250
 //
 // Lab 10-2
-// If it is a pair programming lab please specify partner below.
-// Partner: @peteranteater
+// Pair Programming Lab
+// Partner: @abledaniel
+//
+// This program creates a network class that connects smart pointer phone
+// objects together to allow for communication within the owners of the phones
+//
 
 #pragma once
 
 #include <map>
 #include <memory>
+#include <string>
+#include <vector>
 
 #include "message.h"
 #include "phone.h"
 
 class Network {
-  // ======================= YOUR CODE HERE =======================
-  // Write the Network class here. Refer to the README for the member
-  // variables, constructors, and member functions needed.
-  //
-  // If you were the "driver" for the Phone class, then switch roles
-  // with your lab partner and act as the "navigator" for this class.
-  // ===============================================================
-private: 
-std::map<std::string, std::shared_ptr<Phone>> phonebook_;
+ public:
+  void AddPhone(std::shared_ptr<Phone> phone);
+  void SendMessage(std::shared_ptr<Message> message,
+                   const std::string& recipient);
+  void SendMessage(std::shared_ptr<Message> message,
+                   const std::vector<std::string>& recipients);
 
-public:
-
-void AddPhone(std::shared_ptr<Phone> add){
-  phonebook_.insert({add->GetOwner(), add});
-}
-
-void SendMessage(std::shared_ptr<Message> send, const std::string &person);
-
-void SendMessage(std::shared_ptr<Message> send, const std::vector<std::string> vector);
-
+ private:
+  std::map<std::string, std::shared_ptr<Phone>> phonebook_;
 };
